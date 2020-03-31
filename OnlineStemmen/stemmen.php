@@ -25,16 +25,15 @@ if (!isset($_SESSION['id'])) {
     echo '<p class="logout-status">U moet inloggen om te stemmen!</p>';
 }
 else if (isset($_SESSION['id'])) {
-    echo '<form>
+    echo '<form method="post" name="stemmen" action="includes/Stem.inc.php" id="stemmen">
     <input type="radio" id="male" name="gender" value="male">
     <label for="male">Male</label><br>
     <input type="radio" id="female" name="gender" value="female">
     <label for="female">Female</label><br>
     <input type="radio" id="other" name="gender" value="other">
     <label for="other">Other</label>
-    <input type="submit">
-</form>';
-}
+    <input type="submit" name="Submitstemmen">
+    </form>';}
 ?>
 </body>
 </html>

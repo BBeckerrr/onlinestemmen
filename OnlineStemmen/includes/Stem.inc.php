@@ -1,15 +1,26 @@
 <?php
-if (isset($_POST['signup-submit'])) {
+if (isset($_POST['Submitstemmen'])) {
 
     require 'dbh.inc.php';
 
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $stem = $_POST["Stem_Partij"];
 
-    if(isset($_POST['SubmitStemmen']))
-    {
-        $Stem = $_POST['stemmen'];
+        // Prepare an insert statement
+        $sqli = "INSERT INTO users (Stem_Partij) VALUES ($stem);";
 
-        $sqlS="UPDATE 'users' SET Stem_Partij = $Stem";
+        if (mysqli_query( $conn,$sqli)) {
+            echo "New record created successfully";
+        } else {
+            //THIS LINE SHOWS THE ERROR
+            echo "Error: " . $sqli . "<br>" . mysqli_error();
+        }
 
-        mysqli_query($conn, sqlS);
+        // Close connection
+        mysqli_close($conn);
     }
+}else{
+    header("location: login.php");
+    exit;
 }
+
